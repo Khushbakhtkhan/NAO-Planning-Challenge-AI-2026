@@ -9,7 +9,7 @@ import heapq
 import math
 
 MAX_DURATION_SECONDS = 120.0
-MIN_INTERMEDIATE_MOVEMENTS = 5
+MIN_INTERMEDIATE_POSITIONS = 5
 
 try:
     string_types = (basestring,)
@@ -72,7 +72,7 @@ def _validate_movements(movements):
 
 def generate_sequence(mandatory_positions, movements, time_limit=120,
                       min_intermediate=5):
-    """Return the fastest compatible plan meeting the global move minimum.
+    """Return the fastest compatible plan meeting the global position minimum.
 
     ``mandatory_positions`` is an ordered pose list, including its initial and
     final pose. Each movement is a dict with ``name``, ``start``, ``end``, and
@@ -80,21 +80,22 @@ def generate_sequence(mandatory_positions, movements, time_limit=120,
     ``start`` matches the current pose.
 
     The result includes every visited pose, the selected movement names, and
-    total duration. ``intermediate_count`` counts optional movement instances
-    across the whole plan, not separately between each mandatory pair.
+    total duration. ``intermediate_count`` counts visited positions between
+    the initial and final poses, including mandatory positions, across the
+    whole plan.
     """
     _validate_positions(mandatory_positions)
     adjacency = _validate_movements(movements)
     time_limit = _positive_number(time_limit, "time_limit")
     if not isinstance(min_intermediate, int) or (
-            min_intermediate < MIN_INTERMEDIATE_MOVEMENTS):
+            min_intermediate < MIN_INTERMEDIATE_POSITIONS):
         raise ValueError("min_intermediate must be at least %d"
-                         % MIN_INTERMEDIATE_MOVEMENTS)
+                         % MIN_INTERMEDIATE_POSITIONS)
     if time_limit > MAX_DURATION_SECONDS:
         raise ValueError("time_limit cannot exceed %.0f seconds"
                          % MAX_DURATION_SECONDS)
 
-    # State: current pose, next mandatory index, optional moves used (capped).
+    # Track transition count; one transition reaches the final pose.
     start_state = (mandatory_positions[0], 1, 0)
     best_time = {start_state: 0.0}
     previous = {}
@@ -108,7 +109,7 @@ def generate_sequence(mandatory_positions, movements, time_limit=120,
             continue
         position, next_required, move_count = state
         if (next_required == len(mandatory_positions)
-                and move_count >= min_intermediate):
+                and move_count >= min_intermediate + 1):
             final_state = state
             break
         if elapsed > time_limit:
@@ -125,7 +126,7 @@ def generate_sequence(mandatory_positions, movements, time_limit=120,
                 # Mandatory poses must be visited in the supplied order.
                 continue
 
-            next_count = min(min_intermediate, move_count + 1)
+            next_count = min(min_intermediate + 1, move_count + 1)
             next_state = (destination, required_index, next_count)
             next_time = elapsed + movement["duration"]
             if next_time > time_limit:
@@ -141,7 +142,7 @@ def generate_sequence(mandatory_positions, movements, time_limit=120,
     if final_state is None:
         raise ValueError(
             "No compatible sequence meets the mandatory order, minimum of "
-            "%d intermediate movements, and %.2f-second time limit"
+            "%d intermediate positions, and %.2f-second time limit"
             % (min_intermediate, time_limit))
 
     selected = []
@@ -162,7 +163,7 @@ def generate_sequence(mandatory_positions, movements, time_limit=120,
         "positions": positions,
         "movements": movement_names,
         "duration_seconds": best_time[final_state],
-        "intermediate_count": len(movement_names),
+        "intermediate_count": len(movement_names) - 1,
     }
 
 

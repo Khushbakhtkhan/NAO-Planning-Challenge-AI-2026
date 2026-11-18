@@ -21,14 +21,31 @@ class GenerateSequenceTests(unittest.TestCase):
              "duration": 8},
         ]
 
-    def test_plans_across_mandatory_poses_with_global_move_minimum(self):
+    def test_plans_across_mandatory_poses_with_global_position_minimum(self):
         plan = generate_sequence(self.mandatory, self.movements)
 
         self.assertEqual(
             plan["positions"],
             ["StandInit", "PoseA", "Sit", "PoseB", "Stand", "PoseC", "Crouch"])
-        self.assertEqual(plan["intermediate_count"], 6)
+        self.assertEqual(plan["intermediate_count"], 5)
         self.assertEqual(plan["duration_seconds"], 48)
+
+    def test_rejects_fewer_than_five_intermediate_positions(self):
+        movements = [
+            {"name": "sit", "start": "StandInit", "end": "Sit",
+             "duration": 8},
+            {"name": "stand", "start": "Sit", "end": "Stand",
+             "duration": 8},
+            {"name": "move_forward", "start": "Stand", "end": "PoseA",
+             "duration": 8},
+            {"name": "diagonal_left", "start": "PoseA", "end": "PoseB",
+             "duration": 8},
+            {"name": "move_backward", "start": "PoseB", "end": "Crouch",
+             "duration": 8},
+        ]
+
+        with self.assertRaises(ValueError):
+            generate_sequence(self.mandatory, movements)
 
     def test_rejects_missing_compatible_transition(self):
         with self.assertRaises(ValueError):

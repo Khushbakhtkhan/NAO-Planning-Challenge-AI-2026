@@ -14,13 +14,13 @@ competition rules:
 
 • An ordered list of mandatory poses from the initial pose to the goal
 • Compatible transitions chosen from a supplied movement catalog
-• A global minimum of 5 intermediate movements
+• A global minimum of 5 intermediate positions, including mandatory positions
 • A total duration no greater than 2 minutes
 
 In `algorithm.py`, movements are connected only when the catalog explicitly
 declares compatible start and end poses. Every catalog entry also records its
 duration. Algorithm A finds the quickest route through the mandatory poses
-while respecting the movement minimum and time cap; if no valid route is
+while respecting the position minimum and time cap; if no valid route is
 available, it reports that rather than producing an invalid sequence.
 
 The behavior currently runs this sequence: `StandInit → Air Guitar → Happy
@@ -33,7 +33,7 @@ the first dance action.
 The exact mandatory poses between `StandInit` and `Crouch`, along with the
 competition's transition-compatibility and duration data, are not included
 here. As a result, the choreography follows the known start, finish, minimum
-movement count, and timing guidelines, but still needs to be checked against
+position count, and timing guidelines, but still needs to be checked against
 the full mandatory-pose list. Provide the assignment data to
 `generate_sequence(mandatory_positions, movements)` before considering the
 planner's output fully competition-ready.
@@ -58,7 +58,7 @@ Required Libraries / Environment
 Repository Link
 ------------------------------------
 The project repository is available here:
-https://github.com/anoushazaidii/Nao_challenge_FAIKRMOD1
+https://github.com/Khushbakhtkhan/NAO-Planning-Challenge-AI-2026
 
 Video Link
 ---------------

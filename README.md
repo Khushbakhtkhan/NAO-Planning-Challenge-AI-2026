@@ -1,9 +1,8 @@
-===========================
 NAO PLANNING CHALLENGE 2026
 ===========================
 Participants:
 - Khushbakht Khan (email: khushbakht.khan3@studio.unibo.it)
-- Alishba Khan    (email: alishba.khan@studio.unibo.it)
+- Alishba Khan    (email: alishba.khan2@studio.unibo.it)
 
 ------------------------------------
 Project Description

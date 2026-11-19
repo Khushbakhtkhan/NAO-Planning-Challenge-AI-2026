@@ -15,7 +15,7 @@
       <BehaviorLayer name="behavior_layer1">
         <BehaviorKeyframe name="keyframe1" index="1">
           <Diagram scale="70.7107">
-            <Box name="Pos: Air Guitar" id="1" localization="8" tooltip="Guitar playing, with bow" x="469" y="494">
+            <Box name="Pos: Air Guitar" id="1" localization="8" tooltip="Guitar playing, with bow" x="484" y="645">
               <bitmap>media/images/box/movement/move.png</bitmap>
               <script language="4">
                 <content>
@@ -965,7 +965,7 @@ class MyClass(GeneratedClass):
                 </ActuatorList>
               </Timeline>
             </Box>
-            <Box name="Happy Birthday" id="19" localization="8" tooltip="twist with Elvis Happy Birthday" x="2156" y="824">
+            <Box name="Happy Birthday" id="19" localization="8" tooltip="twist with Elvis Happy Birthday" x="1604" y="863">
               <bitmap>media/images/box/movement/move.png</bitmap>
               <script language="4">
                 <content>
@@ -1664,7 +1664,7 @@ class MyClass(GeneratedClass):
               <Resource name="All motors" type="Lock" timeout="0" />
               <Resource name="Stiffness" type="Lock" timeout="0" />
             </Box>
-            <Box name="Hello" id="25" localization="8" tooltip="Simple hello animation.&#x0A;&#x0A;!!Warning!! There is no speech in this box. It is a just an animation box with some&#x0A;leds animation." x="296" y="322">
+            <Box name="Hello" id="25" localization="8" tooltip="Simple hello animation.&#x0A;&#x0A;!!Warning!! There is no speech in this box. It is a just an animation box with some&#x0A;leds animation." x="536" y="83">
               <bitmap>media/images/box/movement/move.png</bitmap>
               <script language="4">
                 <content>
@@ -3048,7 +3048,7 @@ class MyClass(GeneratedClass):
               <Resource name="Head" type="Lock" timeout="0" />
               <Resource name="Arms" type="Lock" timeout="0" />
             </Box>
-            <Box name="Play Sound" id="7" localization="8" tooltip="Play a sound file. Select the file in parameters. The format of the file can be wav or ogg (on virtual robot) and also mp3 (on a real robot).&#x0A;&#x0A;Note: There can be some delay to play ogg or mp3 (on a robot) files. We advise you to use wav if&#x0A;you want a fast play of the file." x="262" y="504">
+            <Box name="Play Sound" id="7" localization="8" tooltip="Play a sound file. Select the file in parameters. The format of the file can be wav or ogg (on virtual robot) and also mp3 (on a real robot).&#x0A;&#x0A;Note: There can be some delay to play ogg or mp3 (on a robot) files. We advise you to use wav if&#x0A;you want a fast play of the file." x="247" y="612">
               <bitmap>media/images/box/interaction/play_music.png</bitmap>
               <script language="4">
                 <content>
@@ -3181,6 +3181,7 @@ class MyClass(GeneratedClass):
             <Link inputowner="0" indexofinput="4" outputowner="26" indexofoutput="4" />
             <Link inputowner="0" indexofinput="4" outputowner="26" indexofoutput="5" />
             <Link inputowner="4" indexofinput="2" outputowner="6" indexofoutput="4" />
+            <Link inputowner="25" indexofinput="3" outputowner="7" indexofoutput="4" />
           </Diagram>
         </BehaviorKeyframe>
       </BehaviorLayer>

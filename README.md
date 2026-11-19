@@ -25,10 +25,9 @@ available, it reports that rather than producing an invalid sequence.
 The behavior currently runs this sequence: `StandInit → Air Guitar → Happy
 Birthday → Hello → Wipe Forehead → Tai Chi → Bow → End Pose → Crouch`. It
 includes six dance or gesture actions. Their animation timelines take about
-72 seconds in total; this estimate does not include the time needed to move
+88 seconds in total; this estimate does not include the time needed to move
 into the opening and closing postures. `Uptown-funk.wav` is triggered alongside
-the first dance action. The Happy Birthday action uses the separate,
-approximately 11-second `Happy-Birthday.mp3` cue.
+the first dance action.
 
 The exact mandatory poses between `StandInit` and `Crouch`, along with the
 competition's transition-compatibility and duration data, are not included
